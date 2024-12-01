@@ -18,26 +18,26 @@ class Carte:
 
 # Création des cartes 
 cartes = [
-    Carte("Aquariel", 25, 3, 1, "Eau", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Aquariel.jpg"),
-    Carte("Ardwind", 30, 10, 5, "Feu", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/ardwind.jpg"),
-    Carte("Auradyn", 90, 8, 5, "Eau", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Auradyn.jpg"),
-    Carte("Chromilex", 45, 4, 3, "Plante", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Chromilex.jpg"),
-    Carte("Cryovore", 15, 5, 4, "Eau", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Cryovore.jpg"),
-    Carte("Cryowind", 60, 3, 2, "Eau", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Cryowind.jpg"),
-    Carte("Eclipserra", 85, 4, 3, "Feu", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Eclipserra.jpg"),
-    Carte("Fulgorion", 55, 7, 5, "Plante", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Fulgorion.jpg"),
-    Carte("Fulgoryx", 95, 9, 5, "Feu", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Fulgoryx.jpg"),
-    Carte("Lumysol", 20, 3, 2, "Plante", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Lumysol.jpg"),
-    Carte("Lunargent", 10, 2, 1, "Eau", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Lunargent.jpg"),
-    Carte("Nebulo", 35, 3, 3, "Eau", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Nebulo.jpg"),
-    Carte("Obscurion", 45, 4, 3, "Feu", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Obscurion.jpg"),
-    Carte("Shadowis", 75, 6, 4, "Feu", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Shadowis.jpg"),
-    Carte("Solairis", 80, 10, 4, "Feu", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Solairis.jpg"),
-    Carte("Solfang", 40, 4, 3, "Plante", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Solfang.jpg"),
-    Carte("Terragos", 15, 3, 1, "Plante", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Terragos.jpg"),
-    Carte("Tornalyx", 60, 10, 5, "Eau", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Tornalyx.jpg"),
-    Carte("Venoxis", 40, 6, 3, "Plante", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Venoxis.jpg"),
-    Carte("Voltaryx", 30, 9, 4, "Feu", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Cartes/Voltaryx.jpg")
+    Carte("Aquariel", 25, 3, 1, "Eau", "./Cartes/Aquariel.jpg"),
+    Carte("Ardwind", 30, 10, 5, "Feu", "./Cartes/ardwind.jpg"),
+    Carte("Auradyn", 90, 8, 5, "Eau", "./Cartes/Auradyn.jpg"),
+    Carte("Chromilex", 45, 4, 3, "Plante", "./Cartes/Chromilex.jpg"),
+    Carte("Cryovore", 15, 5, 4, "Eau", "./Cartes/Cryovore.jpg"),
+    Carte("Cryowind", 60, 3, 2, "Eau", "./Cartes/Cryowind.jpg"),
+    Carte("Eclipserra", 85, 4, 3, "Feu", "./Cartes/Eclipserra.jpg"),
+    Carte("Fulgorion", 55, 7, 5, "Plante", "./Cartes/Fulgorion.jpg"),
+    Carte("Fulgoryx", 95, 9, 5, "Feu", "./Cartes/Fulgoryx.jpg"),
+    Carte("Lumysol", 20, 3, 2, "Plante", "./Cartes/Lumysol.jpg"),
+    Carte("Lunargent", 10, 2, 1, "Eau", "./Cartes/Lunargent.jpg"),
+    Carte("Nebulo", 35, 3, 3, "Eau", "./Cartes/Nebulo.jpg"),
+    Carte("Obscurion", 45, 4, 3, "Feu", "./Cartes/Obscurion.jpg"),
+    Carte("Shadowis", 75, 6, 4, "Feu", "./Cartes/Shadowis.jpg"),
+    Carte("Solairis", 80, 10, 4, "Feu", "./Cartes/Solairis.jpg"),
+    Carte("Solfang", 40, 4, 3, "Plante", "./Cartes/Solfang.jpg"),
+    Carte("Terragos", 15, 3, 1, "Plante", "./Cartes/Terragos.jpg"),
+    Carte("Tornalyx", 60, 10, 5, "Eau", "./Cartes/Tornalyx.jpg"),
+    Carte("Venoxis", 40, 6, 3, "Plante", "./Cartes/Venoxis.jpg"),
+    Carte("Voltaryx", 30, 9, 4, "Feu", "./Cartes/Voltaryx.jpg")
 ]
 
 class Joueur:

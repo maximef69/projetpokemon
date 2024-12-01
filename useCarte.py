@@ -45,8 +45,8 @@ class Carte:
 
 
 # # Exemple de création de cartes
-carte1 = Carte("Dragon de Feu", 30, 8, 3, "Feu", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Ressources/Ressources/images/dragon_feu.png")
-carte2 = Carte("Hydre Aquatique", 25, 6, 2, "Eau", "C:/Users/Max/OneDrive/24-25/ort/td_dev/projets/projet_1/Ressources/Ressources/images/Foretoress.png")
+carte1 = Carte("Dragon de Feu", 30, 8, 3, "Feu", "./Cartes/Auradyn.jpg")
+carte2 = Carte("Hydre Aquatique", 25, 6, 2, "Eau", "./Cartes/Nebulo.jpg")
 
 
 # Afficher les cartes dans une fenêtre Pygame
