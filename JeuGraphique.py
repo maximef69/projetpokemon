@@ -2,6 +2,60 @@ import tkinter as tk
 import pygame
 import random
 
+root = tk.Tk()
+
+# Définir les dimensions et le titre de la fenêtre
+root.title("Jeu Graphique")
+root.geometry("800x600")  
+
+# 2. Ajouter un canevas Tkinter dans la fenêtre principale
+canvas = tk.Canvas(root, width=800, height=600)
+canvas.pack()
+
+# 3. Initialiser Pygame
+pygame.init()
+
+pygame_screen = pygame.Surface((800, 600))
+
+# 4. Initialiser la fenêtre Pygame pour le rendu dans le canevas Tkinter
+def update_pygame_surface():
+    # Remplir la surface Pygame avec une couleur (par exemple, un fond bleu)
+    pygame_screen.fill((0, 0, 255))
+    
+    # Convertir l'image Pygame en un format compatible avec Tkinter
+    pygame_image = pygame.image.tostring(pygame_screen, 'RGB')
+    tk_image = tk.PhotoImage(width=800, height=600, data=pygame_image)
+    
+    # Afficher l'image sur le canevas Tkinter
+    canvas.create_image(0, 0, anchor=tk.NW, image=tk_image)
+
+    # Mettre à jour l'image à chaque 30ms (pour avoir une animation fluide)
+    root.after(30, update_pygame_surface)
+
+# Démarrer la mise à jour de la surface Pygame dans la fenêtre Tkinter
+update_pygame_surface()
+
+# Lancer la boucle principale de l'interface Tkinter
+root.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Carte:
     def __init__(self, nom, points_de_vie, attaque, energie, type, chemin_image):
@@ -85,8 +139,8 @@ class Jeu:
         
         self.Joueur1.mana = 2
         self.Joueur2.mana = 2
-        print("-------------La partie commence-------------")
-        print("Vous disposez de 2 points d'énergie")
+        # print("-------------La partie commence-------------")
+        # print("Vous disposez de 2 points d'énergie")
         
                 
     def RechercheCarte(self, pile, nom, joueurmana):
@@ -120,49 +174,49 @@ class Jeu:
         return vainqueur  
     
     def AfficherCartes(self):
-        print(f"\n############## {self.Joueur1.nom}################")
+        # print(f"\n############## {self.Joueur1.nom}################")
         for carte in self.Joueur1.pile:
             print(carte)
-        print(f"Energie de {self.Joueur1.nom} : {self.Joueur1.mana}")
-        print("\n########################################\n")
-        print(f"##############{self.Joueur2.nom}################")
+            print(f"Energie de {self.Joueur1.nom} : {self.Joueur1.mana}")
+            print("\n########################################\n")
+            print(f"##############{self.Joueur2.nom}################")
         for carte in self.Joueur2.pile:
-            print(carte)
-        print(f"Energie de {self.Joueur2.nom} : {self.Joueur2.mana}")
-        print("########################################")
+            # print(carte)
+        # print(f"Energie de {self.Joueur2.nom} : {self.Joueur2.mana}")
+        # print("########################################")
                
     def AvantageCarte(self, carte1, carte2):          
         avantage = self.ComparaisonTypes(carte1.type, carte2.type)
         if avantage == 1:
-            print(f"{carte1.nom} a un avantage de type ! Bonus de 50% sur l'attaque.")
+            # print(f"{carte1.nom} a un avantage de type ! Bonus de 50% sur l'attaque.")
             carte1.attaque *= 1.5
         elif avantage == 2:
-            print(f"{carte2.nom} a un avantage de type ! Bonus de 50% sur l'attaque.")
+            # print(f"{carte2.nom} a un avantage de type ! Bonus de 50% sur l'attaque.")
             carte2.attaque *= 1.5
         
     def AttaqueCarte(self, carte1, carte2):
         if carte1.attaque > carte2.attaque:
             self.Joueur1.defausse.append(carte2)
             self.Joueur1.pile.append(carte1)
-            print(f"Joueur 1 gagne avec {carte1.nom} !")
+            # print(f"Joueur 1 gagne avec {carte1.nom} !")
         elif carte1.attaque < carte2.attaque:
             self.Joueur2.defausse.append(carte1)
             self.Joueur2.pile.append(carte2)
-            print(f"Joueur 2 gagne avec {carte2.nom} !")
+            # print(f"Joueur 2 gagne avec {carte2.nom} !")
         else:
             self.Joueur1.pile.append(carte1)
             self.Joueur2.pile.append(carte2)
-            print(f"Égalité entre {carte1.nom} et {carte2.nom} !")
+            # print(f"Égalité entre {carte1.nom} et {carte2.nom} !")
         
     def ChoisirCarte(self,joueur):
         carte = None
         while carte == None:
-            choix = input(f"{joueur.nom}: Saisir le nom de la carte ou entrer 'Passe' pour passer votre tour")
+            # choix = input(f"{joueur.nom}: Saisir le nom de la carte ou entrer 'Passe' pour passer votre tour")
             if choix == "Passe":
                 return None
             carte = self.RechercheCarte(joueur.pile, choix, joueur.mana)
             if carte == None:
-                print("Erreur, veuillez ressaisir une carte valide.")
+                # print("Erreur, veuillez ressaisir une carte valide.")
             else:
                 joueur.mana = joueur.mana - carte.energie
                 joueur.pile.remove(carte)
