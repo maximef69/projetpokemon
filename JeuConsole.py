@@ -46,7 +46,6 @@ class Joueur:
         self.defausse = []
         self.mana = 0
         self.nom = ""
-        
 
 class Jeu:
     def __init__(self):
@@ -87,7 +86,9 @@ class Jeu:
         
                 
     def RechercheCarte(self, pile, nom, joueurmana):
+        """f
         
+        """
         for carte in pile:
             if nom == carte.nom :
                 if carte.energie > joueurmana:
@@ -138,21 +139,24 @@ class Jeu:
             carte2.attaque *= 1.5
         
     def AttaqueCarte(self, carte1, carte2):
+        # Le joueur 1 gagne le duel
         if carte1.attaque > carte2.attaque:
             self.Joueur1.defausse.append(carte2)
             self.Joueur1.pile.append(carte1)
             print(f"Joueur 1 gagne avec {carte1.nom} !")
+        # Le joueur 2 gagne le duel
         elif carte1.attaque < carte2.attaque:
             self.Joueur2.defausse.append(carte1)
             self.Joueur2.pile.append(carte2)
             print(f"Joueur 2 gagne avec {carte2.nom} !")
+        # Egalité entre les joueurs
         else:
             self.Joueur1.pile.append(carte1)
             self.Joueur2.pile.append(carte2)
             print(f"Égalité entre {carte1.nom} et {carte2.nom} !")
         
     def ChoisirCarte(self,joueur):
-        carte = None
+        carte = None  
         while carte == None:
             choix = input(f"{joueur.nom}: Saisir le nom de la carte ou entrer 'Passe' pour passer votre tour")
             if choix == "Passe":
@@ -161,8 +165,8 @@ class Jeu:
             if carte == None:
                 print("Erreur, veuillez ressaisir une carte valide.")
             else:
-                joueur.mana = joueur.mana - carte.energie
-                joueur.pile.remove(carte)
+                joueur.mana = joueur.mana - carte.energie # On soustrait l'énergie de joueur par l'énergie de la carte
+                joueur.pile.remove(carte)   # La carte du joueur est enlevée de sa main pour rentrer en duel
         return carte
         
     def ResoudreDuel(self, carte1, carte2):
@@ -187,7 +191,7 @@ class Jeu:
                 print(f"\nTour {self.tour_actuel + 1} passé par les 2 joueurs")
                 print("Aucune action sera effectuée.")
                 
-        # Les deux joueurs joue une carte.
+        # Les deux joueurs jouent une carte.
         elif carte1 != None and carte2 != None: 
                 print(f"\nTour {self.tour_actuel + 1}:")
                 print(f"  Joueur 1: {carte1}")
@@ -195,7 +199,6 @@ class Jeu:
                 
                 self.AvantageCarte(carte1, carte2)            
                 self.AttaqueCarte(carte1, carte2)
-        
         
 
     def DuelCarte(self):
@@ -210,8 +213,6 @@ class Jeu:
         CarteJoueur1 = self.ChoisirCarte(self.Joueur1)
         CarteJoueur2 = self.ChoisirCarte(self.Joueur2)
         
-        
-        
         self.ResoudreDuel(CarteJoueur1, CarteJoueur2)
 
         self.Joueur1.mana += 2
@@ -222,7 +223,7 @@ class Jeu:
         """
         Affiche les résultats finaux et déclare le vainqueur.
         """
-        print("\n*** Résultats finaux ***")
+        print("\n******** Résultats finaux *********")
         TailleJoueur1 = len(self.Joueur1.defausse)
         TailleJoueur2 = len(self.Joueur2.defausse)
 
@@ -230,19 +231,19 @@ class Jeu:
         print(f"Cartes remportées par Joueur 2: {TailleJoueur2}")
 
         if TailleJoueur1 > TailleJoueur2:
-            print("Joueur 1 a gagné la partie!")
+            print(f"{self.Joueur1.nom} a gagné la partie!")
         elif TailleJoueur1 < TailleJoueur2:
-            print("Joueur 2 a gagné la partie!")
+            print(f"{self.Joueur2.nom} a gagné la partie!")
         else:
-            print("Il y a égalité entre les joueurs!")
+            print(f"Il y a égalité entre {self.Joueur1.nom} et {self.Joueur2.nom} !")
 
     def Jouer(self, cartes):
         """
         Gère le déroulement du jeu.
         """
 
-        self.Joueur1.nom = input("Joueur 1 : Saisir votre nom")
-        self.Joueur2.nom = input("Joueur 2 : Saisir votre nom")
+        self.Joueur1.nom = input("Joueur 1 : Saisir votre nom")#Saisie du nom du joueur1
+        self.Joueur2.nom = input("Joueur 2 : Saisir votre nom")#Saisie du nom du joueur2
         
         self.DistributionEtMelangeDesCartes(cartes)
         self.LancerPartie()
@@ -251,7 +252,6 @@ class Jeu:
             self.DuelCarte()
 
         self.FinPartie()
-
 
 # Début
 jeu = Jeu()

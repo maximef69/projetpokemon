@@ -51,6 +51,8 @@ img2 = Image.open("./Cartes/Cryovore.jpg")
 img2 = img2.resize((200, 200))  
 myimg2 = ImageTk.PhotoImage(img2)
 canvas_carte2.create_image(0, 0, image=myimg2, anchor='nw')
+label_nom = Label(frame3,            text=f"PV: {self.points_de_vie} | Attaque: {self.attaque}\n"
+                 f"Énergie: {self.energie} | Type: {self.type}",)
 
 button2 = Button(frame3, text="Choisir", font=("Courier", 10))
 button2.grid(column=0, row=1, pady=10)

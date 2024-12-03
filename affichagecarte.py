@@ -47,7 +47,9 @@ frame2 = Frame(root, padx=20, pady=20)
 frame2.grid(column=0, row=1, sticky="w")
 
 label_title = Label(frame2, text="Information joueur 1", font=("Courier", 20), anchor="w")
+label2_title = Label(frame2, text="Information joueur 2", font=("Courier", 20), anchor="e" )
 label_title.pack()
+
 
 frame3 = Frame(root, padx=20, pady=20)
 frame3.grid(column=0, row=2, sticky="w")
