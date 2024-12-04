@@ -86,9 +86,12 @@ class Jeu:
         
                 
     def RechercheCarte(self, pile, nom, joueurmana):
-        """f
         
         """
+        Retourne la carte demandée si le joueur dispose assez d'énergie.
+        
+        """
+
         for carte in pile:
             if nom == carte.nom :
                 if carte.energie > joueurmana:
@@ -99,6 +102,12 @@ class Jeu:
         return None
 
     def ComparaisonTypes(self, type1, type2):
+        """Compare le type des cartes, Feu bat Plante, Plante bat Eau, Eau bat Feu.
+        
+        Et retourne le numéro du joueur vainqueur.
+        """
+        
+        
         vainqueur = 0
         if type1 == type2:
             return vainqueur
@@ -158,7 +167,7 @@ class Jeu:
     def ChoisirCarte(self,joueur):
         carte = None  
         while carte == None:
-            choix = input(f"{joueur.nom}: Saisir le nom de la carte ou entrer 'Passe' pour passer votre tour")
+            choix = input(f"{joueur.nom}: Saisir le nom de la carte ou entrer 'Passe' pour passer votre tour  ")
             if choix == "Passe":
                 return None
             carte = self.RechercheCarte(joueur.pile, choix, joueur.mana)
@@ -242,8 +251,8 @@ class Jeu:
         Gère le déroulement du jeu.
         """
 
-        self.Joueur1.nom = input("Joueur 1 : Saisir votre nom")#Saisie du nom du joueur1
-        self.Joueur2.nom = input("Joueur 2 : Saisir votre nom")#Saisie du nom du joueur2
+        self.Joueur1.nom = input("Joueur 1 : Saisir votre nom :  ")#Saisie du nom du joueur1
+        self.Joueur2.nom = input("Joueur 2 : Saisir votre nom :  ")#Saisie du nom du joueur2
         
         self.DistributionEtMelangeDesCartes(cartes)
         self.LancerPartie()
@@ -255,6 +264,5 @@ class Jeu:
 
 # Début
 jeu = Jeu()
-Joueur1 = Joueur()
 jeu.Jouer(cartes)
 

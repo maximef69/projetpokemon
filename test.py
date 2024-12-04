@@ -2,6 +2,9 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+import random
+
+
 class Carte:
     def __init__(self, nom, points_de_vie, attaque, energie, type, chemin_image):
         self.nom = nom
@@ -16,6 +19,30 @@ class Carte:
             f"Nom : {self.nom} - PV: {self.points_de_vie}, "
             f"Attaque: {self.attaque}, Énergie: {self.energie}, Type: {self.type}"
         )
+
+# Création des cartes 
+cartes = [
+    Carte("Aquariel", 25, 3, 1, "Eau", "./Cartes/Aquariel.jpg"),
+    Carte("Ardwind", 30, 10, 5, "Feu", "./Cartes/ardwind.jpg"),
+    Carte("Auradyn", 90, 8, 5, "Eau", "./Cartes/Auradyn.jpg"),
+    Carte("Chromilex", 45, 4, 3, "Plante", "./Cartes/Chromilex.jpg"),
+    Carte("Cryovore", 15, 5, 4, "Eau", "./Cartes/Cryovore.jpg"),
+    Carte("Cryowind", 60, 3, 2, "Eau", "./Cartes/Cryowind.jpg"),
+    Carte("Eclipserra", 85, 4, 3, "Feu", "./Cartes/Eclipserra.jpg"),
+    Carte("Fulgorion", 55, 7, 5, "Plante", "./Cartes/Fulgorion.jpg"),
+    Carte("Fulgoryx", 95, 9, 5, "Feu", "./Cartes/Fulgoryx.jpg"),
+    Carte("Lumysol", 20, 3, 2, "Plante", "./Cartes/Lumysol.jpg"),
+    Carte("Lunargent", 10, 2, 1, "Eau", "./Cartes/Lunargent.jpg"),
+    Carte("Nebulo", 35, 3, 3, "Eau", "./Cartes/Nebulo.jpg"),
+    Carte("Obscurion", 45, 4, 3, "Feu", "./Cartes/Obscurion.jpg"),
+    Carte("Shadowis", 75, 6, 4, "Feu", "./Cartes/Shadowis.jpg"),
+    Carte("Solairis", 80, 10, 4, "Feu", "./Cartes/Solairis.jpg"),
+    Carte("Solfang", 40, 4, 3, "Plante", "./Cartes/Solfang.jpg"),
+    Carte("Terragos", 15, 3, 1, "Plante", "./Cartes/Terragos.jpg"),
+    Carte("Tornalyx", 60, 10, 5, "Eau", "./Cartes/Tornalyx.jpg"),
+    Carte("Venoxis", 40, 6, 3, "Plante", "./Cartes/Venoxis.jpg"),
+    Carte("Voltaryx", 30, 9, 4, "Feu", "./Cartes/Voltaryx.jpg")
+]
 
 root = Tk()
 root.title("Jeu de cartes Pokémon")
@@ -51,7 +78,7 @@ img2 = Image.open("./Cartes/Cryovore.jpg")
 img2 = img2.resize((200, 200))  
 myimg2 = ImageTk.PhotoImage(img2)
 canvas_carte2.create_image(0, 0, image=myimg2, anchor='nw')
-label_nom = Label(frame3,            text=f"PV: {self.points_de_vie} | Attaque: {self.attaque}\n"
+label_nom = Label(frame3, text=f"PV: {carte2.points_de_vie} | Attaque: {self.attaque}\n"
                  f"Énergie: {self.energie} | Type: {self.type}",)
 
 button2 = Button(frame3, text="Choisir", font=("Courier", 10))
