@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-
 import random
 
 class Carte:
@@ -13,35 +12,119 @@ class Carte:
         self.type = type
         self.chemin_image = chemin_image
 
-        self.frame = None
-        self.canvas = None
         self.image = None
         self.img = None
 
-    def __str__(self):
-        return (
-            f"Nom : {self.nom} - PV: {self.points_de_vie}, "
-            f"Attaque: {self.attaque}, Énergie: {self.energie}, Type: {self.type}"
-        )
-
-    def afficherCarteInfos(self):
-        label_infos = Label(
-            self.frame,
-            text=f"Nom: {self.nom} PV: {self.points_de_vie}  Attaque: {self.attaque}\nÉnergie: 4  Type: {self.type}",
-            font=("Arial", 10),
-            justify="left",
-        )
-        label_infos.grid(column=0, row=1, pady=5)
-
     def afficher(self, frame):
-        self.frame = frame
-        self.canvas = Canvas(frame, width=200, height=200)
+        canvas = Canvas(frame, width=200, height=200)
         self.img = Image.open(self.chemin_image).resize((200, 200))
         self.image = ImageTk.PhotoImage(self.img)
+        canvas.create_image(0, 0, image=self.image, anchor='nw')
+        canvas.pack()
 
-        self.canvas.grid(column=0, row=0)
-        self.canvas.create_image(0, 0, image=self.image, anchor='nw')
-        self.afficherCarteInfos()
+        label_infos = Label(
+            frame,
+            text=f"{self.nom}\nPV: {self.points_de_vie} | Attaque: {self.attaque}\nÉnergie: {self.energie} | Type: {self.type}",
+            font=("Arial", 12),
+            justify="center",
+        )
+        label_infos.pack()
+
+class Jeu:
+    def __init__(self, root, cartes):
+        self.root = root
+        self.cartes = cartes
+        self.joueur1_score = 0
+        self.joueur2_score = 0
+
+        self.joueur1_carte = None
+        self.joueur2_carte = None
+
+        self.setup_ui()
+
+    def setup_ui(self):
+        # Titre
+        Label(self.root, text="Jeu de cartes Pokémon", font=("Courier", 24)).pack(pady=10)
+
+        # Zones des joueurs
+        self.frame_joueur1 = Frame(self.root, padx=20, pady=20, bg="lightblue")
+        self.frame_joueur1.pack(side=LEFT, fill=BOTH, expand=True)
+
+        self.frame_joueur2 = Frame(self.root, padx=20, pady=20, bg="lightpink")
+        self.frame_joueur2.pack(side=RIGHT, fill=BOTH, expand=True)
+
+        # Zone centrale pour actions
+        self.frame_centrale = Frame(self.root, padx=20, pady=20)
+        self.frame_centrale.pack(fill=BOTH, expand=True)
+
+        self.label_resultat = Label(self.frame_centrale, text="", font=("Arial", 14), fg="green")
+        self.label_resultat.pack(pady=10)
+
+        self.bouton_combat = Button(
+            self.frame_centrale, text="Attaquer !", font=("Arial", 14), command=self.combattre
+        )
+        self.bouton_combat.pack(pady=10)
+
+        self.bouton_nouvelle_carte = Button(
+            self.frame_centrale, text="Nouvelle carte", font=("Arial", 14), command=self.piocher_cartes
+        )
+        self.bouton_nouvelle_carte.pack(pady=10)
+
+        # Scores
+        self.label_score = Label(
+            self.frame_centrale, text=f"Score Joueur 1: {self.joueur1_score} | Score Joueur 2: {self.joueur2_score}", font=("Arial", 14)
+        )
+        self.label_score.pack(pady=10)
+
+        # Initialisation des cartes
+        self.piocher_cartes()
+
+    def piocher_cartes(self):
+        # Nettoyer les zones de cartes
+        for widget in self.frame_joueur1.winfo_children():
+            widget.destroy()
+        for widget in self.frame_joueur2.winfo_children():
+            widget.destroy()
+
+        # Piocher des cartes aléatoires
+        self.joueur1_carte = random.choice(self.cartes)
+        self.joueur2_carte = random.choice(self.cartes)
+
+        # Afficher les cartes
+        Label(self.frame_joueur1, text="Joueur 1", font=("Arial", 16), bg="lightblue").pack()
+        self.joueur1_carte.afficher(self.frame_joueur1)
+
+        Label(self.frame_joueur2, text="Joueur 2", font=("Arial", 16), bg="lightpink").pack()
+        self.joueur2_carte.afficher(self.frame_joueur2)
+
+        # Réactiver le bouton Combat
+        self.bouton_combat.config(state="normal")
+
+        self.label_resultat.config(text="")
+
+    def combattre(self):
+        if not self.joueur1_carte or not self.joueur2_carte:
+            self.label_resultat.config(text="Les cartes ne sont pas prêtes!", fg="red")
+            return
+
+        # Désactiver le bouton Combat
+        self.bouton_combat.config(state="disabled")
+
+        # Comparaison des attaques
+        if self.joueur1_carte.attaque > self.joueur2_carte.attaque:
+            self.joueur1_score += 1
+            gagnant = "Joueur 1 gagne ce tour!"
+        elif self.joueur1_carte.attaque < self.joueur2_carte.attaque:
+            self.joueur2_score += 1
+            gagnant = "Joueur 2 gagne ce tour!"
+        else:
+            gagnant = "Égalité!"
+
+        # Mise à jour de l'interface
+        self.label_resultat.config(text=gagnant, fg="green")
+        self.label_score.config(
+            text=f"Score Joueur 1: {self.joueur1_score} | Score Joueur 2: {self.joueur2_score}"
+        )
 
 # Création des cartes
 cartes = [
@@ -67,25 +150,11 @@ cartes = [
     Carte("Voltaryx", 30, 9, 4, "Feu", "./Cartes/Voltaryx.jpg")
 ]
 
+# Lancer l'application
 root = Tk()
 root.title("Jeu de cartes Pokémon")
 root.geometry('1080x720')
-frame1 = Frame(root, padx=20, pady=20)
-frame1.grid(column=0, row=0, sticky="w")
-frame2 = Frame(root, padx=20, pady=20)
-frame2.grid(column=0, row=1, sticky="w", columnspan=100)
 
-label_title = Label(frame2, text="Informations joueur 1", font=("Courier", 20))
-label2_title = Label(frame2, text="Informations joueur 2", font=("Courier", 20))
-label_title.grid(column=0, row=0)
-label2_title.grid(column=1, row=0)
-
-frame3 = Frame(root, padx=20, pady=20)
-frame3.grid(column=0, row=2, sticky="w")
-
-carte1 = random.choice(cartes)
-carte1.afficher(frame1)
-carte2 = random.choice(cartes)
-carte2.afficher(frame3)
+jeu = Jeu(root, cartes)
 
 root.mainloop()
